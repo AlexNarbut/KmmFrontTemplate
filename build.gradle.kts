@@ -6,3 +6,17 @@ plugins {
     alias(libs.plugins.buildConfig).apply(false)
     alias(libs.plugins.kotlinx.serialization).apply(false)
 }
+
+
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        val mokoResourceVersion = libs.versions.moko.resources.get()
+        classpath("dev.icerock.moko:resources-generator:$mokoResourceVersion")
+    }
+}
+
+

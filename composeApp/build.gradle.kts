@@ -7,9 +7,11 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
+
     androidTarget {
         compilations.all {
             kotlinOptions {
@@ -27,12 +29,15 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "ComposeApp"
-            isStatic = true
+            isStatic = false
 
             transitiveExport = true
 
             export(libs.decompose)
             export(libs.essenty)
+
+            export(libs.moko.resources)
+            export(libs.moko.resources.compose)
         }
     }
 
@@ -73,6 +78,9 @@ kotlin {
                 api(libs.essenty)
 
 
+                api(libs.moko.resources)
+                api(libs.moko.resources.compose)
+
                 implementation(libs.composeImageLoader)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)
@@ -87,6 +95,7 @@ kotlin {
         }
 
         val androidMain by getting {
+            dependsOn(commonMain)
             dependencies {
                 implementation(libs.androidx.appcompat)
                 implementation(libs.androidx.activityCompose)
@@ -101,7 +110,10 @@ kotlin {
         }
 
         val jvmMain by getting {
+            dependsOn(commonMain)
+
             dependencies {
+
                 implementation(compose.desktop.common)
                 implementation(compose.desktop.currentOs)
 
@@ -112,27 +124,19 @@ kotlin {
         }
 
         val iosX64Main by getting {
-            //resources.srcDirs("build/generated/moko/iosX64Main/src")
+            resources.srcDirs("build/generated/moko/iosX64Main/src")
         }
         val iosArm64Main by getting {
-            //resources.srcDirs("build/generated/moko/iosArm64Main/src")
+            resources.srcDirs("build/generated/moko/iosArm64Main/src")
         }
         val iosSimulatorArm64Main by getting {
-            //resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
+            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
         }
         val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
             dependencies {
 
             }
         }
-
-//        iosMain.dependencies {
-//
-//        }
     }
 
 }
@@ -153,6 +157,7 @@ android {
         manifest.srcFile("src/androidMain/AndroidManifest.xml")
         res.srcDirs("src/androidMain/resources")
         resources.srcDirs("src/commonMain/resources")
+        java.srcDirs("build/generated/moko/androidMain/src")
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -164,6 +169,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.4"
     }
+
+//    packaging {
+//        resources.excludes.add("META-INF/**")
+//    }
 }
 
 compose.desktop {
@@ -176,6 +185,12 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "ru.narbut.kmmfronttemp" // required
+    multiplatformResourcesClassName = "SharedRes" // optional, default MR
+    //disableStaticFrameworkWarning = true
 }
 
 buildConfig {
