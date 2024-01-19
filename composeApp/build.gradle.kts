@@ -3,6 +3,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
+    //alias(libs.plugins.cocoapods)
     alias(libs.plugins.android.application)
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
@@ -27,8 +28,28 @@ kotlin {
         it.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+
+            transitiveExport = true
+
+            export(libs.decompose)
+            export(libs.essenty)
         }
     }
+
+//    cocoapods {
+//        version = "1.0.0"
+//        summary = "Compose application framework"
+//        homepage = "empty"
+//        ios.deploymentTarget = "15.6"
+//        podfile = project.file("../iosApp/Podfile")
+//        framework {
+//            baseName = "ComposeApp"
+//
+//            export(libs.decompose)
+//            export(libs.kmm.essenty)
+//        }
+//        //extraSpecAttributes["resources"] = "['src/commonMain/resources/**']"
+//    }
 
     sourceSets {
         all {
@@ -36,49 +57,84 @@ kotlin {
                 optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
             }
         }
-        commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.material3)
-            implementation(compose.materialIconsExtended)
-            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-            implementation(compose.components.resources)
+        val commonMain by getting {
+            dependencies {
+                implementation(compose.runtime)
+                implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
+                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                implementation(compose.components.resources)
 
-            implementation(libs.koin)
-            implementation(libs.koin.compose)
+                implementation(libs.koin)
+                implementation(libs.koin.compose)
 
-            implementation(libs.decompose)
-            implementation(libs.decompose.compose)
-            implementation(libs.decompose.compose.jetbrains)
+                api(libs.decompose)
+                api(libs.decompose.compose)
+                api(libs.essenty)
 
-            implementation(libs.composeImageLoader)
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlinx.serialization.json)
+
+                implementation(libs.composeImageLoader)
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.serialization.json)
+            }
         }
 
-        commonTest.dependencies {
-            implementation(kotlin("test"))
+
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
         }
 
-        androidMain.dependencies {
-            implementation(libs.androidx.appcompat)
-            implementation(libs.androidx.activityCompose)
-            implementation(libs.compose.uitooling)
-            implementation(libs.kotlinx.coroutines.android)
-            implementation(libs.accompanist.systemui)
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.androidx.appcompat)
+                implementation(libs.androidx.activityCompose)
+                implementation(libs.compose.uitooling)
+                implementation(libs.kotlinx.coroutines.android)
+                implementation(libs.accompanist.systemui)
 
-            implementation(libs.koin.android)
+                implementation(libs.decompose.compose.jetbrains)
+
+                implementation(libs.koin.android)
+            }
         }
 
-        jvmMain.dependencies {
-            implementation(compose.desktop.common)
-            implementation(compose.desktop.currentOs)
-            implementation(libs.kotlinx.coroutines.swing)
+        val jvmMain by getting {
+            dependencies {
+                implementation(compose.desktop.common)
+                implementation(compose.desktop.currentOs)
+
+                implementation(libs.decompose.compose.jetbrains)
+
+                implementation(libs.kotlinx.coroutines.swing)
+            }
         }
 
-        iosMain.dependencies {
+        val iosX64Main by getting {
+            //resources.srcDirs("build/generated/moko/iosX64Main/src")
+        }
+        val iosArm64Main by getting {
+            //resources.srcDirs("build/generated/moko/iosArm64Main/src")
+        }
+        val iosSimulatorArm64Main by getting {
+            //resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
+        }
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+
+            }
         }
 
+//        iosMain.dependencies {
+//
+//        }
     }
+
 }
 
 android {

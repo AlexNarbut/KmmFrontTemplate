@@ -16,13 +16,13 @@ import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.jetbrains.lifecycle.LifecycleController
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import org.koin.core.context.startKoin
-import ru.narbut.kmmfronttemp.app.AppUI
-import ru.narbut.kmmfronttemp.app.root.RootComponentChildStack
+import ru.narbut.kmmfronttemp.presentation.app.AppUI
+import ru.narbut.kmmfronttemp.presentation.app.root.RootComponentChildStack
 import ru.narbut.kmmfronttemp.config.GraphicsConfig
 import ru.narbut.kmmfronttemp.di.KoinModules
-import ru.narbut.kmmfronttemp.navigation.component.UIComponent
-import ru.narbut.kmmfronttemp.theme.composableDimens
-import ru.narbut.kmmfronttemp.theme.initContext
+import ru.narbut.kmmfronttemp.presentation.navigation.component.UIComponent
+import ru.narbut.kmmfronttemp.presentation.theme.composableDimens
+import ru.narbut.kmmfronttemp.presentation.theme.initContext
 import kotlin.system.exitProcess
 
 fun main() {
