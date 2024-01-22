@@ -24,11 +24,11 @@ val MIN_HEGHT = 24
 
 @Composable
 fun MainButton(
+    text: String,
     onClick: () -> Unit,
     borderColor: Color = MaterialTheme.colorScheme.primary,
     contentColor: Color = contentColorFor(borderColor),
     modifier: Modifier = Modifier.fillMaxWidth(),
-    text: String,
     enabled: Boolean = true,
     outlined: Boolean = false,
     interactionSource: MutableInteractionSource? = null,
@@ -40,29 +40,29 @@ fun MainButton(
     ),
 ) {
     MainButton(
-        onClick,
-        contentColor,
-        borderColor,
-        modifier.widthIn(MIN_WIDTH.dp).heightIn(MIN_HEGHT.dp),
         text = {
             Text(
                 text = text,
             )
         },
-        enabled,
-        outlined,
-        interactionSource,
-        contentPadding
+        onClick = onClick,
+        borderColor = borderColor,
+        contentColor = contentColor,
+        modifier = modifier.widthIn(MIN_WIDTH.dp).heightIn(MIN_HEGHT.dp),
+        enabled = enabled,
+        outlined = outlined,
+        interactionSource = interactionSource,
+        contentPadding = contentPadding
     )
 }
 
 @Composable
 fun MainButton(
+    text: @Composable () -> Unit,
     onClick: () -> Unit,
     borderColor: Color = MaterialTheme.colorScheme.primary,
     contentColor: Color = contentColorFor(borderColor),
     modifier: Modifier = Modifier.fillMaxWidth(),
-    text: @Composable () -> Unit,
     enabled: Boolean = true,
     outlined: Boolean = false,
     interactionSource: MutableInteractionSource? = null,
@@ -80,7 +80,8 @@ fun MainButton(
                 onClick()
             },
             colors = ButtonDefaults.outlinedButtonColors(
-                contentColor = borderColor,
+                containerColor = borderColor,
+                contentColor = contentColor,
                 disabledContentColor = contentColor.copy(alpha = 0.5f)
             ),
             border = BorderStroke(composableDimens().cardBorderStrokeWidth.dp, borderColor),

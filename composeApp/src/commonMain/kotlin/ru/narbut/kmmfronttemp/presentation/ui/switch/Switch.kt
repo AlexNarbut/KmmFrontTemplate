@@ -15,7 +15,7 @@ fun MainSwitch(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     colors: SwitchColors = SwitchDefaults.colors(
-        checkedThumbColor = MaterialTheme.colorScheme.primary
+        checkedTrackColor = MaterialTheme.colorScheme.primary
     ),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {

@@ -29,7 +29,7 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "ComposeApp"
-            isStatic = false
+            isStatic = true
 
             transitiveExport = true
 
@@ -123,16 +123,18 @@ kotlin {
             }
         }
 
-        val iosX64Main by getting {
-            resources.srcDirs("build/generated/moko/iosX64Main/src")
-        }
-        val iosArm64Main by getting {
-            resources.srcDirs("build/generated/moko/iosArm64Main/src")
-        }
-        val iosSimulatorArm64Main by getting {
-            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
-        }
+//        val iosX64Main by getting {
+//            resources.srcDirs("build/generated/moko/iosX64Main/src")
+//        }
+//        val iosArm64Main by getting {
+//            resources.srcDirs("build/generated/moko/iosArm64Main/src")
+//        }
+//        val iosSimulatorArm64Main by getting {
+//            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
+//        }
         val iosMain by creating {
+            dependsOn(commonMain)
+
             dependencies {
 
             }
@@ -170,9 +172,6 @@ android {
         kotlinCompilerExtensionVersion = "1.5.4"
     }
 
-//    packaging {
-//        resources.excludes.add("META-INF/**")
-//    }
 }
 
 compose.desktop {
