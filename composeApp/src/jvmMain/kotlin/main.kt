@@ -15,12 +15,14 @@ import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.jetbrains.lifecycle.LifecycleController
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.koin.core.context.startKoin
-import ru.narbut.kmmfronttemp.presentation.app.AppUI
-import ru.narbut.kmmfronttemp.presentation.app.root.RootComponentChildStack
 import ru.narbut.kmmfronttemp.config.GraphicsConfig
 import ru.narbut.kmmfronttemp.di.KoinModules
+import ru.narbut.kmmfronttemp.presentation.app.root.RootComponentChildStack
 import ru.narbut.kmmfronttemp.presentation.navigation.component.UIComponent
+import ru.narbut.kmmfronttemp.presentation.theme.AppContext
+import ru.narbut.kmmfronttemp.presentation.theme.DEFAULT_APP_DIMENS
 import ru.narbut.kmmfronttemp.presentation.theme.composableDimens
 import ru.narbut.kmmfronttemp.presentation.theme.initContext
 import kotlin.system.exitProcess
@@ -33,7 +35,13 @@ fun main() {
 
     val lifecycle = LifecycleRegistry()
     val rootComponent = RootComponentChildStack(DefaultComponentContext(lifecycle))
-    initContext(AppUI.appContext)
+    initContext(
+        MutableStateFlow(
+            AppContext(
+                DEFAULT_APP_DIMENS.getDimensClass()
+            )
+        )
+    )
 
     startApplication(rootComponent, lifecycle)
 }

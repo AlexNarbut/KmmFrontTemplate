@@ -1,1 +1,1 @@
-package ru.narbut.kmmfronttemp.presentation
+package ru.narbut.kmmfronttemp

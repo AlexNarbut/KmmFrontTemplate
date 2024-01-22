@@ -1,3 +1,5 @@
+@file:Suppress("OPT_IN_USAGE")
+
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
@@ -29,7 +31,6 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "ComposeApp"
-            isStatic = true
 
             transitiveExport = true
 
@@ -77,7 +78,6 @@ kotlin {
                 api(libs.decompose.compose)
                 api(libs.essenty)
 
-
                 api(libs.moko.resources)
                 api(libs.moko.resources.compose)
 
@@ -123,17 +123,14 @@ kotlin {
             }
         }
 
-//        val iosX64Main by getting {
-//            resources.srcDirs("build/generated/moko/iosX64Main/src")
-//        }
-//        val iosArm64Main by getting {
-//            resources.srcDirs("build/generated/moko/iosArm64Main/src")
-//        }
-//        val iosSimulatorArm64Main by getting {
-//            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
-//        }
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
         val iosMain by creating {
             dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
 
@@ -141,6 +138,10 @@ kotlin {
         }
     }
 
+    compilerOptions {
+        // Common compiler options applied to all Kotlin source sets
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
 }
 
 android {
