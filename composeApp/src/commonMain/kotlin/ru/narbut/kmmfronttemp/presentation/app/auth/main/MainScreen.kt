@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import ru.narbut.kmmfronttemp.SharedRes
+import ru.narbut.kmmfronttemp.presentation.theme.composableString
 import ru.narbut.kmmfronttemp.presentation.ui.CustomScaffold
 import ru.narbut.kmmfronttemp.presentation.ui.buttons.MainButton
 import ru.narbut.kmmfronttemp.presentation.ui.switch.MainSwitch
@@ -25,7 +27,7 @@ fun MainScreen(
             val checkedState = remember { mutableStateOf(true) }
             Column {
                 MainPrimaryText(
-                    text = "" //composableString(SharedRes.strings.)
+                    text = composableString(SharedRes.strings.app_name)
                 )
                 MainButton(text = "Click",onClick = {},outlined = false)
                 MainSwitch(checkedState.value, {
