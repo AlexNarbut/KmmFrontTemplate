@@ -14,6 +14,7 @@ import ru.narbut.kmmfronttemp.presentation.theme.composableString
 import ru.narbut.kmmfronttemp.presentation.ui.CustomScaffold
 import ru.narbut.kmmfronttemp.presentation.ui.buttons.MainButton
 import ru.narbut.kmmfronttemp.presentation.ui.image.SvgImage
+import ru.narbut.kmmfronttemp.presentation.ui.loading.CrossLoadingWheel
 import ru.narbut.kmmfronttemp.presentation.ui.switch.MainSwitch
 
 @Composable
@@ -34,6 +35,8 @@ fun MainScreen(
                 SvgImage(
                     res = SharedRes.images.launch_success
                 )
+
+                CrossLoadingWheel(contentDesc = "test")
 
                 MainSwitch(checkedState.value, {
                     checkedState.value = it
