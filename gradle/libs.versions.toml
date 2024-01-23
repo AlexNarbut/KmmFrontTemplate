@@ -1,7 +1,7 @@
 [versions]
 
 kotlin = "1.9.20"
-agp = "8.0.2"
+agp = "8.2.1"
 compose = "1.5.11"
 
 koin = "3.5.3"
@@ -9,7 +9,7 @@ koin-compose = "1.1.2"
 accompanist = "0.31.1-alpha"
 
 androidx-appcompat = "1.6.1"
-androidx-activityCompose = "1.7.2"
+androidx-activityCompose = "1.8.2"
 compose-uitooling = "1.5.4"
 decompose = "3.0.0-alpha04"
 decompose-jetbrains = "2.2.0-compose-experimental"
