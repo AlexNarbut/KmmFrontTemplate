@@ -1,6 +1,6 @@
 package ru.narbut.kmmfronttemp.presentation.theme
 
-val DEFAULT_APP_DIMENS = AppDimensEnum.MEDIUM
+val DEFAULT_APP_DIMENS = AppDimensEnum.LARGE
 
 
 enum class AppDimensEnum (val type : Int) {
@@ -38,20 +38,25 @@ class DimensImpl(
 
     val notificationWidth: Int,
 
+    val displayLarge: Int,
+    val displayMedium: Int,
+    val displaySmall: Int,
 
-    val textH1Size: Int,
-    val textH2Size: Int,
-    val textH3Size: Int,
-    val textH4Size: Int,
-    val textH5Size: Int,
-    val textH6Size: Int,
-    val textSubTitle1Size: Int,
-    val textSubTitle2Size: Int,
-    val textBody1Size: Int,
-    val textBody2Size: Int,
-    val textButtonSize: Int,
-    val textCaptionSize: Int,
-    val textOverlineSize: Int,
+    val headlineLarge: Int,
+    val headlineMedium: Int,
+    val headlineSmall: Int,
+
+    val titleLarge: Int,
+    val titleMedium: Int,
+    val titleSmall: Int,
+
+    val bodyLarge: Int,
+    val bodyMedium: Int,
+    val bodySmall: Int,
+
+    val labelLarge: Int,
+    val labelMedium: Int,
+    val labelSmall: Int,
 
     val marginXXTinySize: Int,
     val marginXTinySize: Int,
@@ -94,8 +99,7 @@ class DimensImpl(
 ) {
 
     companion object {
-        const val TEXT_SIZE_TINY_COEF = 0.8f
-        const val TEXT_SIZE_LARGE_COEF = 1.2f
+        const val DESKTOP_TEXT_SIZE_COEF = 1.2f
     }
 }
 
@@ -111,19 +115,25 @@ val smallDimens = DimensImpl(
 
     notificationWidth = 350,
 
-    textH1Size = 76,
-    textH2Size = 48,
-    textH3Size = 38,
-    textH4Size = 28,
-    textH5Size = 24,
-    textH6Size = 19,
-    textSubTitle1Size = 19,
-    textSubTitle2Size = 16,
-    textBody1Size = 14,
-    textBody2Size = 11,
-    textButtonSize = 14,
-    textCaptionSize = 13,
-    textOverlineSize = 11,
+    displayLarge = 60,
+    displayMedium = 48,
+    displaySmall = 38,
+
+    headlineLarge = 32,
+    headlineMedium = 28,
+    headlineSmall = 24,
+
+    titleLarge = 22,
+    titleMedium = 16,
+    titleSmall = 14,
+
+    bodyLarge = 16,
+    bodyMedium = 14,
+    bodySmall = 12,
+
+    labelLarge = 14,
+    labelMedium = 12,
+    labelSmall = 10,
 
     marginXXTinySize = 1,
     marginXTinySize = 2,
@@ -178,19 +188,25 @@ val mediumDimens = DimensImpl(
 
     notificationWidth = 350,
 
-    textH1Size = 96,
-    textH2Size = 60,
-    textH3Size = 48,
-    textH4Size = 36,
-    textH5Size = 24,
-    textH6Size = 20,
-    textSubTitle1Size = 24,
-    textSubTitle2Size = 20,
-    textBody1Size = 18,
-    textBody2Size = 14,
-    textButtonSize = 18,
-    textCaptionSize = 16,
-    textOverlineSize = 14,
+    displayLarge = 62,
+    displayMedium = 50,
+    displaySmall = 40,
+
+    headlineLarge = 36,
+    headlineMedium = 32,
+    headlineSmall = 28,
+
+    titleLarge = 26,
+    titleMedium = 20,
+    titleSmall = 18,
+
+    bodyLarge = 20,
+    bodyMedium = 18,
+    bodySmall = 16,
+
+    labelLarge = 17,
+    labelMedium = 14,
+    labelSmall = 12,
 
     marginXXTinySize = 2,
     marginXTinySize = 4,
@@ -244,19 +260,25 @@ val largeDimens = DimensImpl(
 
     notificationWidth = 350,
 
-    textH1Size = 115,
-    textH2Size = 72,
-    textH3Size = 57,
-    textH4Size = 43,
-    textH5Size = 28,
-    textH6Size = 24,
-    textSubTitle1Size = 28,
-    textSubTitle2Size = 24,
-    textBody1Size = 21,
-    textBody2Size = 17,
-    textButtonSize = 21,
-    textCaptionSize = 19,
-    textOverlineSize = 17,
+    displayLarge = 65,
+    displayMedium = 53,
+    displaySmall = 43,
+
+    headlineLarge = 39,
+    headlineMedium = 35,
+    headlineSmall = 31,
+
+    titleLarge = 26,
+    titleMedium = 23,
+    titleSmall = 19,
+
+    bodyLarge = 23,
+    bodyMedium = 21,
+    bodySmall = 18,
+
+    labelLarge = 19,
+    labelMedium = 15,
+    labelSmall = 12,
 
     marginXXTinySize = 2,
     marginXTinySize = 4,

@@ -1,5 +1,6 @@
 package ru.narbut.kmmfronttemp.presentation.ui.buttons
 
+import MainText
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
@@ -10,17 +11,24 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import ru.narbut.kmmfronttemp.ComposePlatform
+import ru.narbut.kmmfronttemp.getComposePlatform
 import ru.narbut.kmmfronttemp.presentation.theme.composableDimens
 
 val MIN_WIDTH = 24
 val MIN_HEGHT = 24
+
+fun defaultButtonModifier(): Modifier = if (getComposePlatform() == ComposePlatform.DESKTOP) {
+    Modifier.fillMaxWidth().widthIn(MIN_WIDTH.dp).heightIn(MIN_HEGHT.dp)
+} else {
+    Modifier
+}
 
 @Composable
 fun MainButton(
@@ -28,7 +36,7 @@ fun MainButton(
     onClick: () -> Unit,
     borderColor: Color = MaterialTheme.colorScheme.primary,
     contentColor: Color = contentColorFor(borderColor),
-    modifier: Modifier = Modifier.fillMaxWidth(),
+    modifier: Modifier = defaultButtonModifier(),
     enabled: Boolean = true,
     outlined: Boolean = false,
     interactionSource: MutableInteractionSource? = null,
@@ -39,16 +47,18 @@ fun MainButton(
         bottom = composableDimens().buttonVerticalPadding.dp
     ),
 ) {
+
     MainButton(
         text = {
-            Text(
+            MainText(
                 text = text,
+                color = contentColor
             )
         },
         onClick = onClick,
         borderColor = borderColor,
         contentColor = contentColor,
-        modifier = modifier.widthIn(MIN_WIDTH.dp).heightIn(MIN_HEGHT.dp),
+        modifier = modifier,
         enabled = enabled,
         outlined = outlined,
         interactionSource = interactionSource,
@@ -62,7 +72,7 @@ fun MainButton(
     onClick: () -> Unit,
     borderColor: Color = MaterialTheme.colorScheme.primary,
     contentColor: Color = contentColorFor(borderColor),
-    modifier: Modifier = Modifier.fillMaxWidth(),
+    modifier: Modifier = defaultButtonModifier(),
     enabled: Boolean = true,
     outlined: Boolean = false,
     interactionSource: MutableInteractionSource? = null,
@@ -75,7 +85,7 @@ fun MainButton(
 ) {
     if (outlined) {
         OutlinedButton(
-            modifier = modifier.widthIn(MIN_WIDTH.dp).heightIn(MIN_HEGHT.dp),
+            modifier = modifier,
             onClick = {
                 onClick()
             },
@@ -93,7 +103,7 @@ fun MainButton(
         }
     } else {
         Button(
-            modifier = modifier.widthIn(MIN_WIDTH.dp).heightIn(MIN_HEGHT.dp),
+            modifier = modifier,
             colors = ButtonDefaults.buttonColors(
                 containerColor = borderColor,
                 contentColor = contentColor,
