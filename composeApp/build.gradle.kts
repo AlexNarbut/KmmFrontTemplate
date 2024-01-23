@@ -5,7 +5,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
-    //alias(libs.plugins.cocoapods)
+    alias(libs.plugins.cocoapods)
     alias(libs.plugins.android.application)
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
@@ -24,38 +24,28 @@ kotlin {
 
     jvm()
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
+    cocoapods {
+        version = "1.0.0"
+        summary = "Compose application framework"
+        homepage = "empty"
+        ios.deploymentTarget = "15.0"
+        podfile = project.file("../iosApp/Podfile")
+        framework {
             baseName = "ComposeApp"
+            isStatic = true
 
             transitiveExport = true
 
             export(libs.decompose)
             export(libs.essenty)
-
             export(libs.moko.resources)
-            export(libs.moko.resources.compose)
         }
+        extraSpecAttributes["resources"] = "['src/commonMain/resources/**']"
     }
-
-//    cocoapods {
-//        version = "1.0.0"
-//        summary = "Compose application framework"
-//        homepage = "empty"
-//        ios.deploymentTarget = "15.6"
-//        podfile = project.file("../iosApp/Podfile")
-//        framework {
-//            baseName = "ComposeApp"
-//
-//            export(libs.decompose)
-//            export(libs.kmm.essenty)
-//        }
-//        //extraSpecAttributes["resources"] = "['src/commonMain/resources/**']"
-//    }
 
     sourceSets {
         all {
@@ -123,25 +113,30 @@ kotlin {
             }
         }
 
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
+        val iosX64Main by getting {
+            resources.srcDirs("build/generated/moko/iosX64Main/src")
+        }
+        val iosArm64Main by getting {
+            resources.srcDirs("build/generated/moko/iosArm64Main/src")
+        }
+        val iosSimulatorArm64Main by getting {
+            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
+        }
         val iosMain by creating {
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-
             dependencies {
 
             }
         }
     }
 
-    compilerOptions {
-        // Common compiler options applied to all Kotlin source sets
-        freeCompilerArgs.add("-Xexpect-actual-classes")
-    }
+//    compilerOptions {
+//        // Common compiler options applied to all Kotlin source sets
+//        freeCompilerArgs.add("-Xexpect-actual-classes")
+//    }
 }
 
 android {

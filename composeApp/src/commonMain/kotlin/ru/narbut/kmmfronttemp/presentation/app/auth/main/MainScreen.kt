@@ -25,7 +25,7 @@ fun MainScreen(
             val checkedState = remember { mutableStateOf(true) }
             Column {
                 MainPrimaryText(
-                    text = "stringResource(SharedRes.strings.)"
+                    text = "" //composableString(SharedRes.strings.)
                 )
                 MainButton(text = "Click",onClick = {},outlined = false)
                 MainSwitch(checkedState.value, {
