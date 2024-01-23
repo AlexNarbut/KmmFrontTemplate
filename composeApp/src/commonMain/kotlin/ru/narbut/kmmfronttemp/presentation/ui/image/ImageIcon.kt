@@ -8,6 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import dev.icerock.moko.resources.ImageResource
+import dev.icerock.moko.resources.compose.painterResource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
@@ -53,13 +55,17 @@ fun loadXmlImageVector(file: File, density: Density): ImageVector =
 
 @Composable
 fun SvgImage(
-    svgPath: String,
+    res: ImageResource,
     colorFilter: ColorFilter? = null,
-    contentDescription : String = "",
+    contentDescription: String = "",
     modifier: Modifier = Modifier,
 ) {
-
-
+    Image(
+        contentDescription = contentDescription,
+        painter = painterResource(res),
+        colorFilter = colorFilter,
+        modifier = modifier,
+    )
 }
 
 @Composable
@@ -71,7 +77,7 @@ fun RemoteUrlImage(
     onLoading: @Composable (() -> Unit)? = null,
     onFailure: @Composable ((Throwable) -> Unit)? = null,
 ) {
-    if(imageUrl.isEmpty())return
+    if (imageUrl.isEmpty()) return
 
     /*val image = lazyPainterResource(imageUrl, filterQuality = FilterQuality.Medium){
         requestBuilder {

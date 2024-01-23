@@ -13,6 +13,7 @@ import ru.narbut.kmmfronttemp.SharedRes
 import ru.narbut.kmmfronttemp.presentation.theme.composableString
 import ru.narbut.kmmfronttemp.presentation.ui.CustomScaffold
 import ru.narbut.kmmfronttemp.presentation.ui.buttons.MainButton
+import ru.narbut.kmmfronttemp.presentation.ui.image.SvgImage
 import ru.narbut.kmmfronttemp.presentation.ui.switch.MainSwitch
 
 @Composable
@@ -30,6 +31,10 @@ fun MainScreen(
                     text = composableString(SharedRes.strings.app_name)
                 )
                 MainButton(text = "Click",onClick = {},outlined = false)
+                SvgImage(
+                    res = SharedRes.images.launch_success
+                )
+
                 MainSwitch(checkedState.value, {
                     checkedState.value = it
                 },)
