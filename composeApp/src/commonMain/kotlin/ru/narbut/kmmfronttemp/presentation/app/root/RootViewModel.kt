@@ -1,8 +1,8 @@
 package ru.narbut.kmmfronttemp.presentation.app.root
 
+import domain.TestRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import ru.narbut.kmmfronttemp.presentation.data.TestRepository
 import ru.narbut.kmmfronttemp.presentation.navigation.component.ViewModel
 
 

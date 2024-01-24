@@ -3,7 +3,7 @@ package ru.narbut.kmmfronttemp.presentation.app.splash
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.ComponentContext
 import org.koin.core.component.inject
-import ru.narbut.kmmfronttemp.presentation.data.TestRepository
+import domain.TestRepository
 import ru.narbut.kmmfronttemp.presentation.navigation.component.ViewModelRetainComponent
 
 class SplashScreenComponent(

@@ -17,14 +17,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import ru.narbut.kmmfronttemp.ComposePlatform
-import ru.narbut.kmmfronttemp.getComposePlatform
+import getPlatformType
 import ru.narbut.kmmfronttemp.presentation.theme.composableDimens
 
 val MIN_WIDTH = 24
 val MIN_HEGHT = 24
 
-fun defaultButtonModifier(): Modifier = if (getComposePlatform() == ComposePlatform.DESKTOP) {
+fun defaultButtonModifier(): Modifier = if (getPlatformType().isDesktop()) {
     Modifier.fillMaxWidth().widthIn(MIN_WIDTH.dp).heightIn(MIN_HEGHT.dp)
 } else {
     Modifier
@@ -119,7 +118,6 @@ fun MainButton(
         ) {
             text()
         }
-
     }
 }
 

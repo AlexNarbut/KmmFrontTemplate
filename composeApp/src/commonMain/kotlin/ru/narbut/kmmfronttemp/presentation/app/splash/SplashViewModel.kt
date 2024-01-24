@@ -1,7 +1,7 @@
 package ru.narbut.kmmfronttemp.presentation.app.splash
 
 import kotlinx.coroutines.Job
-import ru.narbut.kmmfronttemp.presentation.data.TestRepository
+import domain.TestRepository
 import ru.narbut.kmmfronttemp.presentation.navigation.component.ViewModel
 
 class SplashViewModel(testRepository: TestRepository) : ViewModel(){

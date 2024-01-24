@@ -55,6 +55,8 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
+                implementation(project(":shared"))
+
                 implementation(compose.runtime)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
@@ -141,11 +143,11 @@ kotlin {
 
 android {
     namespace = "ru.narbut.kmmfronttemp"
-    compileSdk = 34
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
-        targetSdk = 34
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
 
         applicationId = "ru.narbut.kmmfronttemp.androidApp"
         versionCode = 1

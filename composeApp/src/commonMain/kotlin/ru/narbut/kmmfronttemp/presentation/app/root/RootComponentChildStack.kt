@@ -17,7 +17,7 @@ import kotlinx.serialization.Serializable
 import org.koin.core.component.inject
 import ru.narbut.kmmfronttemp.presentation.app.auth.main.MainScreenComponent
 import ru.narbut.kmmfronttemp.presentation.app.splash.SplashScreenComponent
-import ru.narbut.kmmfronttemp.presentation.data.TestRepository
+import domain.TestRepository
 import ru.narbut.kmmfronttemp.presentation.navigation.component.ChildStackComponent
 import ru.narbut.kmmfronttemp.presentation.navigation.component.UIComponent
 import ru.narbut.kmmfronttemp.presentation.navigation.component.ViewModelRetainComponent

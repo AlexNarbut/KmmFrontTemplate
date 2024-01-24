@@ -1,12 +1,17 @@
 [versions]
 
+agp = "8.1.4"
+
 kotlin = "1.9.20"
-agp = "8.2.1"
 compose = "1.5.11"
 
 koin = "3.5.3"
 koin-compose = "1.1.2"
 accompanist = "0.31.1-alpha"
+
+android-compileSdk = "34"
+android-minSdk = "24"
+android-targetSdk = "34"
 
 androidx-appcompat = "1.6.1"
 androidx-activityCompose = "1.8.2"
@@ -56,5 +61,6 @@ multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotl
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
