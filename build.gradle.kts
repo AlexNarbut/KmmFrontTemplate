@@ -14,11 +14,6 @@ buildscript {
         gradlePluginPortal()
         mavenLocal()
     }
-
-    dependencies {
-        val mokoResourceVersion = libs.versions.moko.resources.get()
-        classpath("dev.icerock.moko:resources-generator:$mokoResourceVersion")
-    }
 }
 
 

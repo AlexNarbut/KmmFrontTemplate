@@ -3,16 +3,20 @@ include(":composeApp")
 
 pluginManagement {
     repositories {
-        google()
+        mavenLocal()
         gradlePluginPortal()
-        mavenCentral()
+        google()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
 dependencyResolutionManagement {
     repositories {
-        google()
+        mavenLocal()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
         mavenCentral()
+        gradlePluginPortal()
+        google()
     }
 }
 

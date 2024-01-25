@@ -8,11 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import dev.icerock.moko.resources.ImageResource
-import dev.icerock.moko.resources.compose.painterResource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.painterResource
 
 
 @Composable
@@ -55,7 +55,7 @@ fun loadXmlImageVector(file: File, density: Density): ImageVector =
 
 @Composable
 fun SvgImage(
-    res: ImageResource,
+    res: DrawableResource,
     colorFilter: ColorFilter? = null,
     contentDescription: String = "",
     modifier: Modifier = Modifier,

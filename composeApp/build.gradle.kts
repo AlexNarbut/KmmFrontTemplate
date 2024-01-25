@@ -9,7 +9,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
-    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -42,9 +41,7 @@ kotlin {
 
             export(libs.decompose)
             export(libs.essenty)
-            export(libs.moko.resources)
         }
-        extraSpecAttributes["resources"] = "['src/commonMain/resources/**']"
     }
 
     sourceSets {
@@ -69,9 +66,6 @@ kotlin {
                 api(libs.decompose)
                 api(libs.decompose.compose)
                 api(libs.essenty)
-
-                api(libs.moko.resources)
-                api(libs.moko.resources.compose)
 
                 implementation(libs.composeImageLoader)
                 implementation(libs.kotlinx.coroutines.core)
@@ -116,13 +110,13 @@ kotlin {
         }
 
         val iosX64Main by getting {
-            resources.srcDirs("build/generated/moko/iosX64Main/src")
+
         }
         val iosArm64Main by getting {
-            resources.srcDirs("build/generated/moko/iosArm64Main/src")
+
         }
         val iosSimulatorArm64Main by getting {
-            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
+
         }
         val iosMain by creating {
             dependsOn(commonMain)
@@ -155,9 +149,8 @@ android {
     }
     sourceSets["main"].apply {
         manifest.srcFile("src/androidMain/AndroidManifest.xml")
-        res.srcDirs("src/androidMain/resources")
-        resources.srcDirs("src/commonMain/resources")
-        java.srcDirs("build/generated/moko/androidMain/src")
+        res.srcDirs("src/androidMain/composeResources")
+        resources.srcDirs("src/commonMain/composeResources")
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -182,12 +175,6 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
-}
-
-multiplatformResources {
-    multiplatformResourcesPackage = "ru.narbut.kmmfronttemp" // required
-    multiplatformResourcesClassName = "SharedRes" // optional, default MR
-    //disableStaticFrameworkWarning = true
 }
 
 buildConfig {

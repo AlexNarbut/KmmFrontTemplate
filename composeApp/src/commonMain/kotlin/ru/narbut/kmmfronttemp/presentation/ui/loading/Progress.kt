@@ -37,13 +37,14 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import ru.narbut.kmmfronttemp.presentation.theme.composableDimens
 
 @Composable
 fun ProgressImage(
     modifier: Modifier = Modifier,
-    iconPath: String,
+    iconPath: DrawableResource,
     iconColorFilter: ColorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
 ) {
     var currentRotation by remember { mutableStateOf(0f) }
